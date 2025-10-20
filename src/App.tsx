@@ -5,8 +5,18 @@ function App() {
   return (
     <>
       <div>
-        <h1>Booking System Demo</h1>
-        <p>This is a demonstration of the booking widget. In a real website, you would embed just the BookingWidget component.</p>
+        <h1>🐾 Pet Booking System</h1>
+        <p>Professional booking widget for veterinary clinics and pet services.</p>
+        <p>
+          <strong>Integration Guide:</strong> <a href="/public/integration-guide.html" target="_blank">
+            How to add this to your website
+          </a>
+        </p>
+        <p>
+          <strong>GitHub:</strong> <a href="https://github.com/jennyrose101184/PetBookingSystem" target="_blank">
+            View Source Code
+          </a>
+        </p>
       </div>
       <BookingWidget />
     </>

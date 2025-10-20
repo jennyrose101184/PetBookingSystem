@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Booking Widget - How to Integrate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .highlight {
+            background: #ffffcc;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        .demo-section {
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐾 Pet Booking Widget Integration Guide</h1>
+    <p><strong>Live Demo:</strong> <a href="https://jaehubbookingsystem.netlify.app" target="_blank">jaehubbookingsystem.netlify.app</a></p>
+
+    <h2>📋 Quick Integration (3 Steps)</h2>
+    
+    <h3>Step 1: Copy the Widget Files</h3>
+    <p>Download these files from the deployment:</p>
+    <ul>
+        <li><code>https://jaehubbookingsystem.netlify.app/booking-widget.js</code></li>
+        <li><code>https://jaehubbookingsystem.netlify.app/booking-widget.css</code></li>
+    </ul>
+
+    <h3>Step 2: Add to Your Website HTML</h3>
+    <div class="code-block">
+        <strong>Method 1: Direct CDN Integration (Recommended)</strong><br><br>
+<pre>&lt;!-- Add this where you want the booking form to appear --&gt;
+&lt;div id="pet-booking-widget"&gt;&lt;/div&gt;
+
+&lt;!-- Add these before closing &lt;/body&gt; tag --&gt;
+&lt;link rel="stylesheet" href="https://jaehubbookingsystem.netlify.app/booking-widget.css"&gt;
+&lt;script src="https://jaehubbookingsystem.netlify.app/booking-widget.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    BookingWidget.init('pet-booking-widget', {
+        apiUrl: 'https://your-backend-api.com/api' // Replace with your API URL
+    });
+});
+&lt;/script&gt;</pre>
+    </div>
+
+    <div class="code-block">
+        <strong>Method 2: Auto-Initialize (Simplest)</strong><br><br>
+<pre>&lt;!-- Add this where you want the booking form --&gt;
+&lt;div id="booking-widget-auto"&gt;&lt;/div&gt;
+
+&lt;!-- Add these before closing &lt;/body&gt; tag --&gt;
+&lt;link rel="stylesheet" href="https://jaehubbookingsystem.netlify.app/booking-widget.css"&gt;
+&lt;script src="https://jaehubbookingsystem.netlify.app/booking-widget.js"&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <h3>Step 3: Configure Your Backend API</h3>
+    <p>You need to deploy the backend server from <code>server/app.cjs</code> to a hosting service like:</p>
+    <ul>
+        <li><strong>Heroku</strong> (recommended)</li>
+        <li><strong>Railway</strong></li>
+        <li><strong>DigitalOcean</strong></li>
+        <li><strong>AWS/Azure</strong></li>
+    </ul>
+
+    <div class="demo-section">
+        <h2>🎯 Complete Website Integration Example</h2>
+        <p>Here's a complete HTML page example:</p>
+        <div class="code-block">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;My Veterinary Clinic&lt;/title&gt;
+    &lt;style&gt;
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .booking-section { max-width: 600px; margin: 0 auto; }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="header"&gt;
+        &lt;h1&gt;Welcome to Our Veterinary Clinic&lt;/h1&gt;
+        &lt;p&gt;Book an appointment for your pet online&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="booking-section"&gt;
+        &lt;h2&gt;Schedule Your Pet's Appointment&lt;/h2&gt;
+        
+        &lt;!-- 🐾 PET BOOKING WIDGET GOES HERE --&gt;
+        &lt;div id="pet-booking-widget"&gt;&lt;/div&gt;
+        &lt;!-- 🐾 END OF WIDGET --&gt;
+        
+    &lt;/div&gt;
+
+    &lt;!-- Pet Booking Widget CSS --&gt;
+    &lt;link rel="stylesheet" href="https://jaehubbookingsystem.netlify.app/booking-widget.css"&gt;
+    
+    &lt;!-- Pet Booking Widget JavaScript --&gt;
+    &lt;script src="https://jaehubbookingsystem.netlify.app/booking-widget.js"&gt;&lt;/script&gt;
+    &lt;script&gt;
+        document.addEventListener('DOMContentLoaded', function() {
+            BookingWidget.init('pet-booking-widget', {
+                apiUrl: 'https://your-backend-api.com/api' // Replace with your actual API
+            });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+    </div>
+
+    <h2>🎨 Customization Options</h2>
+    
+    <h3>Custom Styling</h3>
+    <div class="code-block">
+<pre>&lt;style&gt;
+/* Override widget colors to match your brand */
+.booking-form-container {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.submit-button {
+    background-color: #your-brand-color !important;
+}
+
+.booking-form {
+    border: 2px solid #your-brand-color;
+    border-radius: 10px;
+}
+&lt;/style&gt;</pre>
+    </div>
+
+    <h3>Multiple Widgets on Same Page</h3>
+    <div class="code-block">
+<pre>&lt;!-- First widget --&gt;
+&lt;div id="booking-widget-1"&gt;&lt;/div&gt;
+
+&lt;!-- Second widget --&gt;
+&lt;div id="booking-widget-2"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    BookingWidget.init('booking-widget-1');
+    BookingWidget.init('booking-widget-2');
+});
+&lt;/script&gt;</pre>
+    </div>
+
+    <h2>🔧 Backend Setup Required</h2>
+    <p class="highlight">⚠️ Important: The widget needs a backend API to save bookings to your database.</p>
+    
+    <h3>Quick Backend Deployment (Heroku)</h3>
+    <ol>
+        <li>Create account at <a href="https://heroku.com" target="_blank">heroku.com</a></li>
+        <li>Install Heroku CLI</li>
+        <li>Run these commands in your project folder:</li>
+    </ol>
+    <div class="code-block">
+<pre>heroku create your-pet-booking-api
+git subtree push --prefix server heroku main
+heroku config:set DB_USER=jennyrose1011
+heroku config:set DB_PASSWORD=October@1184
+heroku config:set DB_SERVER=52.62.243.82,1433
+heroku config:set DB_DATABASE=JAEHubBookingSystem</pre>
+    </div>
+
+    <h2>📱 WordPress Integration</h2>
+    <p>For WordPress sites, add this to a page or post using the HTML block:</p>
+    <div class="code-block">
+<pre>&lt;div id="booking-widget-auto"&gt;&lt;/div&gt;
+
+&lt;link rel="stylesheet" href="https://jaehubbookingsystem.netlify.app/booking-widget.css"&gt;
+&lt;script src="https://jaehubbookingsystem.netlify.app/booking-widget.js"&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <h2>🚀 What You Get</h2>
+    <ul>
+        <li>✅ Professional pet booking form</li>
+        <li>✅ Calendar date picker</li>
+        <li>✅ Time slot management</li>
+        <li>✅ Pet service selection (grooming, vet visits, etc.)</li>
+        <li>✅ Form validation</li>
+        <li>✅ Mobile responsive design</li>
+        <li>✅ Database integration with your SQL Server</li>
+        <li>✅ Real-time availability checking</li>
+    </ul>
+
+    <h2>🆘 Need Help?</h2>
+    <p>If you need assistance with integration or customization:</p>
+    <ul>
+        <li>Check the <a href="https://github.com/jennyrose101184/PetBookingSystem" target="_blank">GitHub repository</a></li>
+        <li>View the source code and documentation</li>
+        <li>Test the widget at <a href="https://jaehubbookingsystem.netlify.app" target="_blank">jaehubbookingsystem.netlify.app</a></li>
+    </ul>
+
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #e8f5e8; border-radius: 8px;">
+        <h3>🎉 Ready to Use!</h3>
+        <p>Copy the code above and paste it into your website. Replace the API URL with your backend server URL.</p>
+        <p><strong>Live Demo:</strong> <a href="https://jaehubbookingsystem.netlify.app" target="_blank">jaehubbookingsystem.netlify.app</a></p>
+    </div>
+
+</body>
+</html>

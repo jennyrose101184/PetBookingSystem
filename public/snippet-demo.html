@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Widget Integration Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .demo-section {
+            margin: 40px 0;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+    <!-- Include the booking widget CSS -->
+    <link rel="stylesheet" href="./dist/booking-widget.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗓️ Booking System Widget Demo</h1>
+            <p>This page demonstrates how to integrate the booking widget into any website as a simple snippet.</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>Integration Method 1: Auto-Initialize</h2>
+            <p>Simply add a div with id <code>booking-widget-auto</code> and include the JavaScript file:</p>
+            
+            <div class="code-block">
+                <code>
+&lt;!-- Widget Container --&gt;<br>
+&lt;div id="booking-widget-auto"&gt;&lt;/div&gt;<br><br>
+&lt;!-- Widget Scripts --&gt;<br>
+&lt;link rel="stylesheet" href="./dist/booking-widget.css"&gt;<br>
+&lt;script src="./dist/booking-widget.js"&gt;&lt;/script&gt;
+                </code>
+            </div>
+
+            <h3>Live Demo:</h3>
+            <!-- Auto-initialized widget will appear here -->
+            <div id="booking-widget-auto"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Integration Method 2: Manual Initialize</h2>
+            <p>For more control, you can manually initialize the widget:</p>
+            
+            <div class="code-block">
+                <code>
+&lt;div id="my-booking-widget"&gt;&lt;/div&gt;<br><br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;BookingWidget.init('my-booking-widget', {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;apiUrl: 'https://your-api.com/api' // Optional<br>
+&nbsp;&nbsp;});<br>
+&lt;/script&gt;
+                </code>
+            </div>
+
+            <h3>Live Demo:</h3>
+            <div id="manual-booking-widget"></div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Backend Setup Required</h2>
+            <p>⚠️ <strong>Note:</strong> This demo runs without a backend. For full functionality, you need to:</p>
+            <ul>
+                <li>Set up MS SQL Server with the Bookings table</li>
+                <li>Deploy the Node.js backend API (see <code>server/app.js</code>)</li>
+                <li>Configure your API URL in the environment variables</li>
+            </ul>
+            <p>See <code>INTEGRATION.md</code> for complete setup instructions.</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>Widget Features</h2>
+            <ul>
+                <li>✅ Responsive design (works on mobile and desktop)</li>
+                <li>✅ Form validation with error messages</li>
+                <li>✅ Calendar date picker</li>
+                <li>✅ Time slot selection</li>
+                <li>✅ Service selection dropdown</li>
+                <li>✅ Real-time availability checking (when backend is connected)</li>
+                <li>✅ Success/error notifications</li>
+                <li>✅ Accessibility support</li>
+            </ul>
+        </div>
+
+        <div class="demo-section">
+            <h2>Database Schema</h2>
+            <div class="code-block">
+                <code>
+CREATE TABLE Bookings (<br>
+&nbsp;&nbsp;Id INT IDENTITY PRIMARY KEY,<br>
+&nbsp;&nbsp;FullName NVARCHAR(100),<br>
+&nbsp;&nbsp;[contact number] NVARCHAR(15),<br>
+&nbsp;&nbsp;email NVARCHAR(50),<br>
+&nbsp;&nbsp;Service NVARCHAR(100),<br>
+&nbsp;&nbsp;Date DATE,<br>
+&nbsp;&nbsp;Time NVARCHAR(10)<br>
+);
+                </code>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the booking widget JavaScript -->
+    <script src="./dist/booking-widget.js"></script>
+    
+    <!-- Manual initialization example -->
+    <script>
+        // Wait for the widget to load, then manually initialize the second instance
+        document.addEventListener('DOMContentLoaded', function() {
+            // Give a small delay to ensure the auto-widget loads first
+            setTimeout(() => {
+                if (window.BookingWidget) {
+                    BookingWidget.init('manual-booking-widget', {
+                        apiUrl: 'http://localhost:3000/api' // This would be your actual API URL
+                    });
+                }
+            }, 100);
+        });
+    </script>
+</body>
+</html>
